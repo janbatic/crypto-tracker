@@ -33,7 +33,7 @@ class RegisterView(APIView):
         auth_token, created = AuthToken.objects.get_or_create(user=user)
         return JsonResponse(
             {
-                "Bearer": auth_token.key
+                "token": f"Bearer {auth_token.key}"
             }
         )
 
@@ -42,17 +42,12 @@ class RegisterView(APIView):
         username = data.get("username")
         email = data.get("email")
         password = data.get("password")
-        password_again = data.get("password_again")
         if not username:
             return HttpResponse(status=400, content="No parameter username given")
         if not email:
             return HttpResponse(status=400, content="No parameter email given")
         if not password:
             return HttpResponse(status=400, content="No parameter password given")
-        if not password_again:
-            return HttpResponse(status=400, content="No parameter password_again given")
-        if not (password == password_again):
-            return HttpResponse(status=400, content="Passwords are not matching")
         try:
             validate_password(password)
         except ValidationError as e:
@@ -91,7 +86,7 @@ class LoginView(APIView):
         auth_token, created = AuthToken.objects.get_or_create(user=user)
         return JsonResponse(
             {
-                "Bearer": auth_token.key
+                "token": f"Bearer {auth_token.key}"
             }
         )
 

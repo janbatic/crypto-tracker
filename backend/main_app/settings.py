@@ -22,7 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ue(dwv25wx_88ym39sm@v2356!+0lf+#t&810d9%-%c0w11q1e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+CORS_ORIGIN_ALLOW_ALL = DEBUG
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -42,6 +44,10 @@ INSTALLED_APPS = [
     'cryptotracker',
     'core'
 ]
+
+if DEBUG is True:
+     INSTALLED_APPS += ('corsheaders', )
+
 AUTH_USER_MODEL = 'core.User'
 
 MIDDLEWARE = [
@@ -52,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = 'main_app.urls'
@@ -91,9 +98,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'HOST': '127.0.0.1',
         'NAME': 'cryptoportfolio',
-        'USER': 'jan',
-        'PASSWORD': 'admin',
-        'PORT': '5432',
+        'USER': 'postgres',
+        'PASSWORD': 'Postgres',
+        'PORT': '5433',
     }
 }
 

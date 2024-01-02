@@ -129,7 +129,7 @@ class CryptoInfoView(APIView):
     @staticmethod
     def get_crypto_data():
         response = requests.get(
-            url='https://www.binance.com/exchange-api/v2/public/asset-service/product/get-products'
+            url='https://www.binance.com/bapi/asset/v2/public/asset-service/product/get-products?includeEtf=true'
         )
         exchange_info = response.json()
         pairs = exchange_info.get("data")

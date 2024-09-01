@@ -1,0 +1,14 @@
+[31m07:05:41 24-09-01 ERROR api[views:66 transaction] Failed adding transaction with error -> unsupported operand type(s) for +: 'NoneType' and 'float'[0m
+[31m07:05:47 24-09-01 ERROR api[views:66 transaction] Failed adding transaction with error -> unsupported operand type(s) for +: 'NoneType' and 'float'[0m
+[31m07:05:55 24-09-01 ERROR api[views:66 transaction] Failed adding transaction with error -> unsupported operand type(s) for +: 'NoneType' and 'float'[0m
+[31m07:06:02 24-09-01 ERROR api[views:66 transaction] Failed adding transaction with error -> unsupported operand type(s) for +: 'NoneType' and 'float'[0m
+[31m07:06:35 24-09-01 ERROR api[views:66 transaction] Failed adding transaction with error -> unsupported operand type(s) for +: 'NoneType' and 'float'[0m
+[31m07:06:42 24-09-01 ERROR api[views:66 transaction] Failed adding transaction with error -> unsupported operand type(s) for +: 'NoneType' and 'float'[0m
+[31m07:07:04 24-09-01 ERROR api[views:66 transaction] Failed adding transaction with error -> unsupported operand type(s) for +: 'NoneType' and 'float'[0m
+[31m07:07:12 24-09-01 ERROR api[views:66 transaction] Failed adding transaction with error -> unsupported operand type(s) for +: 'NoneType' and 'float'[0m
+[31m07:07:27 24-09-01 ERROR api[views:66 transaction] Failed adding transaction with error -> unsupported operand type(s) for +: 'NoneType' and 'float'[0m
+[31m07:07:32 24-09-01 ERROR api[views:66 transaction] Failed adding transaction with error -> unsupported operand type(s) for +: 'NoneType' and 'float'[0m
+[31m07:08:12 24-09-01 ERROR api[views:66 transaction] Failed adding transaction with error -> unsupported operand type(s) for +: 'NoneType' and 'float'[0m
+[31m07:12:04 24-09-01 ERROR api[views:66 transaction] Failed adding transaction with error -> unsupported operand type(s) for +: 'NoneType' and 'float'[0m
+[31m07:13:55 24-09-01 ERROR api[views:66 transaction] Failed adding transaction with error -> unsupported operand type(s) for +: 'Portfolio' and 'float'[0m
+[31m07:28:18 24-09-01 ERROR api[views:67 transaction] Failed adding transaction with error -> unsupported operand type(s) for +: 'Portfolio' and 'float'[0m

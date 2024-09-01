@@ -23,13 +23,17 @@ SECRET_KEY = 'django-insecure-ue(dwv25wx_88ym39sm@v2356!+0lf+#t&810d9%-%c0w11q1e
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-CORS_ORIGIN_ALLOW_ALL = DEBUG
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
 
 
-ALLOWED_HOSTS = ['*']
-
-# Application definition
-
+CORS_TRUSTED_ORIGINS = [
+    "http://localhost:5173",
+]
+ALLOWED_HOSTS = [
+    "localhost",
+    "localhost:5173",
+]
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,23 +46,22 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     'cryptotracker',
-    'core'
+    'core',
+    'corsheaders'
 ]
 
-if DEBUG is True:
-     INSTALLED_APPS += ('corsheaders', )
 
 AUTH_USER_MODEL = 'core.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = 'main_app.urls'
@@ -98,9 +101,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'HOST': '127.0.0.1',
         'NAME': 'cryptoportfolio',
-        'USER': 'postgres',
-        'PASSWORD': 'Postgres',
-        'PORT': '5433',
+        'USER': 'jan',
+        'PASSWORD': 'admin',
+        'PORT': '5432',
     }
 }
 

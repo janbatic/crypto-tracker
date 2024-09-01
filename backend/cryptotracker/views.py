@@ -4,9 +4,12 @@ import pandas as pd
 import requests
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator
+from requests import Response
 from rest_framework import permissions
 from rest_framework.views import APIView
 from django.http import HttpResponse, JsonResponse
+from curl_cffi import requests as curl_requests
+from .utils import millify, add_currency
 from cryptotracker.models import Portfolio
 
 from cryptotracker.models import BrokerPairs
@@ -52,9 +55,10 @@ class TransactionView(APIView):
             if transaction_type == "buy":
                 user_crypto.amount += amount
             elif transaction_type == "sell":
+                amount *= -1
                 if user_crypto.amount < amount:
-                    return HttpResponse(status=409, content="Not big enough amount on account to sell ")
-                user_crypto.amount -= amount
+                    return HttpResponse(status=409, content="Amount on account not high enough")
+                user_crypto.amount += amount
 
             self.update_portfolio_value(user, cryptocurrency, amount)
             user_crypto.save()
@@ -69,8 +73,9 @@ class TransactionView(APIView):
             url=f"https://api.binance.com/api/v3/ticker/price?symbol={cryptocurrency}USDT"
         )
         price = float(response.json().get("price"))
-        amount_value = price * amount
-        user.portfolio.create(amount_value=amount_value)
+        new_value = price * amount
+        old_value = user.portfolio.last().amount_value if user.portfolio.last() else 0
+        user.portfolio.create(amount_value=old_value + new_value)
 
 
 class PossessionView(APIView):
@@ -90,18 +95,17 @@ class PossessionView(APIView):
             return JsonResponse(cryptocurrency.serialized_data())
         cryptocurrencies = request.user.crypto.filter(amount__gt=0)
         current_portfolio_value = request.user.portfolio.last()
-        if not cryptocurrencies:
-            return HttpResponse(status=204, content="No cryptocurrency in possession found")
+
         return JsonResponse(
             {
                 "cryptocurrencies": [cryptocurrency.serialized_data() for cryptocurrency in cryptocurrencies],
-                "current_portfolio_value": current_portfolio_value.amount_value if current_portfolio_value else 0
+                "current_portfolio_value": round(current_portfolio_value.amount_value, 2) if current_portfolio_value else 0
             }
         )
 
 
 class CryptoInfoView(APIView):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.AllowAny, ]
 
     def get(self, request):
         shown_list = []
@@ -112,24 +116,25 @@ class CryptoInfoView(APIView):
             shown_list.append(
                 {
                     'name': row[1]['b'],
-                    'value': row[1]['c'],
-                    'market_cap': row[1]['market_cap']
+                    'value': add_currency(row[1]['c']),
+                    'market_cap': add_currency(millify(row[1]['market_cap']))
                 }
             )
-        paginator = Paginator(shown_list, 25)
+        paginator = Paginator(shown_list, 100)
         page_obj = paginator.get_page(page_number)
         return JsonResponse(
             {
                 'crypto_info': page_obj.object_list,
                 'page': page_obj.number,
-                'num_pages': page_obj.paginator.num_pages
+                'num_pages': page_obj.paginator.num_pages,
+                'items_count': len(page_obj.object_list),
             }
         )
 
     @staticmethod
     def get_crypto_data():
-        response = requests.get(
-            url='https://www.binance.com/bapi/asset/v2/public/asset-service/product/get-products?includeEtf=true'
+        response = curl_requests.get(
+            'https://www.binance.com/bapi/asset/v2/public/asset-service/product/get-products?includeEtf=true'
         )
         exchange_info = response.json()
         pairs = exchange_info.get("data")

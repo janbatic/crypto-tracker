@@ -56,13 +56,20 @@ button:focus-visible {
 
 .card {
   padding: 2em;
+  margin: auto;
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100vw;
+  height: 100vh;
   text-align: center;
+  justify-content: center;
+  align-content: center;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background:white;
+
 }
 
 @media (prefers-color-scheme: light) {
@@ -76,4 +83,113 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.logo{
+    width: 100px;
+}
+
+.v-input{
+  display: block;
+  width: 320px;
+  height: 40px;
+  margin: 30px auto 35px auto;
+}
+.form button{
+  width: 320px;
+  height: 40px;
+  color: white;
+  background: #7CB9E8;
+  border: #7CB9E8;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.v-btn, .v-avatar {
+  margin-right:8px;
+}
+.form-card{
+  padding: 24px 32px!important;
+  margin: 1em auto;
+}
+
+.form-sheet{
+  margin: auto;
+  padding: 48px;
+  max-height: 770px;
+}
+.home-tabel{
+  max-height: 640px;
+  margin: auto;
+  max-width: 80%;
+}
+.v-sheet{
+  width: 550px;
+}
+
+
+.search-field{
+  margin-right: 10%;
+  margin-left: auto;
+}
+
+.component-with-nav-bar{
+  margin-top: 64px;
+}
+
+
+.or-p{
+  color: grey;
+  margin-bottom: 20px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.sign-up-button{
+  width: 320px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.buy-btn{
+  margin-left: 50px;
+  margin-right: 10px;
+  width: 200px !important;
+  background: green !important;
+}
+.sell-btn{
+  margin-left: 10px;
+  margin-right: 50px;
+  margin-bottom: 30px;
+  width: 200px!important;
+  background: darkred !important;
+}
+.alert{
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: end;
+  margin-bottom: 20px;
+   position: absolute;
+}
+.app-bar-custom {
+  background: #7CB9E8 !important;
+  color: white !important;
+}
+.sign-in-btn{
+  elevation: above;
+   margin-right: 30px !important;
+}
+.account-btn{
+ margin-right: 30px !important;
+}
+
+.logo-nav-bar{
+  height: 64px;
+  padding-left: 20px;
+}
+.portfolio-value{
+  font-size: xxx-large;
+  padding-top: 30px;
+  text-align: left;
+  margin-left: 10%;
 }

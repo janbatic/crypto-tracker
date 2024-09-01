@@ -17,7 +17,7 @@
 
  | Parameter  | Type | Description            |
 |------------|------|------------------------|
-| **Bearer** | str  | Users token to sign in |
+| **Authorization** | str  | Users token to sign in |
 
 ## Login
 ### Request
@@ -33,7 +33,7 @@
 
  | Parameter  | Type | Description             |
 |------------|------|-------------------------|
-| **Bearer** | str  |  Users token to sign in |
+| **Authorization** | str  |  Users token to sign in |
 
 
 ## Logout
@@ -42,7 +42,7 @@
 
  | Header parameter | Type | Description                          |
 |------------------|------|--------------------------------------|
-| **Bearer**       | str  | **Required.** Users token to sign in |
+| **Authorization**       | str  | **Required.** Users token to sign in |
 ### Response
  Status code 200, 401
 
@@ -53,7 +53,7 @@
 
  | Header parameter | Type | Description                          |
 |------------------|------|--------------------------------------|
-| **Bearer**       | str  | **Required.** Users token to sign in |
+| **Authorization**       | str  | **Required.** Users token to sign in |
 
 | Body parameter       | Type  | Description                                                 |
 |----------------------|-------|-------------------------------------------------------------|
@@ -70,7 +70,7 @@ Status code 200, 400, 401
 
  | Header parameter | Type | Description                          |
 |------------------|------|--------------------------------------|
-| **Bearer**       | str  | **Required.** Users token to sign in |
+| **Authorization**       | str  | **Required.** Users token to sign in |
 
 ### Response
 | Parameter                   | Type  | Description                                        |

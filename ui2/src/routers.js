@@ -1,12 +1,12 @@
-import Home from "./components/Home.vue"
+import HomeView from "./components/HomeView.vue"
 import LoginComponent from "./components/Login.vue"
 import SignUp from "./components/SignUp.vue"
 import {createRouter, createWebHistory} from "vue-router"
 
 const routes =[
     {
-        name: "Home",
-        component: Home,
+        name: "HomeView",
+        component: HomeView,
         path: "/"
     },
     {

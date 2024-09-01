@@ -40,8 +40,5 @@ const titles = ref(
   ]
 )
 
-function loadItems(){
-  itemsPerPage.value = 10;
-}
 
 </script>

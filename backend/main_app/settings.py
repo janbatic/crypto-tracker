@@ -29,10 +29,12 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_TRUSTED_ORIGINS = [
     "http://localhost:5173",
+
 ]
 ALLOWED_HOSTS = [
     "localhost",
     "localhost:5173",
+    "10.0.2.2"
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',

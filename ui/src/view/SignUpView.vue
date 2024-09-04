@@ -84,7 +84,7 @@ async function HandleSubmit(){
         if (response.status==200){
           localStorage.setItem("bearer-token", response.data["token"])
           //TODO change with general link
-          window.location.replace("http://localhost:5173/login");
+          window.location.replace("http://localhost:5173");
         }
       } catch (e) {
         errorMessage.value = e.response.data

@@ -41,7 +41,7 @@ class TransactionView(APIView):
             return HttpResponse(status=400, content="No amount given")
         if not data.get("transaction_type"):
             return HttpResponse(status=400, content="No transaction type given")
-        if data.get("amount") <= 0:
+        if float(data.get("amount")) <= 0:
             return HttpResponse(status=400, content="Wrong amount given")
         if data.get("transaction_type") not in TRANSACTION_TYPES:
             return HttpResponse(status=400, content="Wrong transaction type given possible types buy, sell")
@@ -49,15 +49,16 @@ class TransactionView(APIView):
     def transaction(self, user, data):
         cryptocurrency = data.get("cryptocurrency")
         transaction_type = data.get("transaction_type")
-        amount = data.get("amount")
+        amount = float(data.get("amount"))
         try:
             user_crypto, created = user.crypto.get_or_create(name=cryptocurrency)
             if transaction_type == "buy":
                 user_crypto.amount += amount
             elif transaction_type == "sell":
-                amount *= -1
+
                 if user_crypto.amount < amount:
                     return HttpResponse(status=409, content="Amount on account not high enough")
+                amount *= -1
                 user_crypto.amount += amount
 
             self.update_portfolio_value(user, cryptocurrency, amount)

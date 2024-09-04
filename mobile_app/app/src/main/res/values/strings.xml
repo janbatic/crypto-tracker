@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">mobile_app</string>
+    <string name="th1">Name</string>
+    <string name="th2">Price</string>
+    <string name="th3">Market cap</string>
+    <string name="profile">Profile</string>
+    <string name="home">Home</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="or">---------------------------- or -----------------------------</string>
+
+</resources>
